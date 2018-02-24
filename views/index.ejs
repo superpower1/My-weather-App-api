@@ -5,13 +5,22 @@
     <title>Api Practice</title>
   </head>
   <body>
-    <div class="random-place">
+    <div class="greeting">
 
     </div>
-    <button type="button" class="fetch-btn">Fetch</button>
-    <form class="" action="/places" method="post">
-      <input type="text" name="place" value="">
-      <button type="submit" name="button">Add</button>
+    <button type="button" class="fetch-btn">Greeting</button>
+    <form class="" action="/greeting" method="post">
+      <select class="" name="day">
+        <option value="0">Sunday</option>
+        <option value="1">Monday</option>
+        <option value="2">Tuesday</option>
+        <option value="3">Wednesday</option>
+        <option value="4">Thursday</option>
+        <option value="5">Friday</option>
+        <option value="6">Saturday</option>
+      </select>
+      <input type="text" name="greeting" value="">
+      <button type="submit" name="button">Change</button>
     </form>
     <script src="/js/main.js" charset="utf-8"></script>
   </body>

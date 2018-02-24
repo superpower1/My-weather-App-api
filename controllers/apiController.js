@@ -1,14 +1,23 @@
 const fs = require('fs');
-const _ = require('lodash');
+const request = require('request');
+const owmAPI = process.env.OPEN_WEATHER_MAP_KEY;
 
-const showPlaces = (req, res) => {
-  fs.readFile('database.txt', (err,buffer)=>{
-    const places = buffer.toString().split('\n');
-    const randomPlace = _.sample(places);
-    res.json(randomPlace);
+const showGreetings = (req, res) => {
+  fs.readFile('database.txt', (err,data) => {
+    const greetings = data.toString().split('\n');
+    res.json(greetings);
+  });
+}
+
+const showWeather = (req, res) => {
+  const location = req.params.location;
+  console.log(location);
+  request(`http://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${owmAPI}`, function (error, response, body) {
+    res.json(JSON.parse(body));
   });
 }
 
 module.exports = {
-  showPlaces
+  showGreetings,
+  showWeather
 };

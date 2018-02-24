@@ -1,4 +1,7 @@
-China
-Australia
-America
-Japan
+sunday
+monday
+tuesday
+wednesday
+thursday
+friday
+Nice day

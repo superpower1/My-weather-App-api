@@ -1,8 +1,15 @@
 document.querySelector('.fetch-btn').addEventListener('click', e=>{
-  fetch('/api/places').then(res => {
-    return res.json();
-  }).then(randomPlace=>{
-    console.log(randomPlace);
-    document.querySelector('.random-place').textContent = randomPlace;
-  });
+  showGreeting();
 })
+
+const showGreeting = () => {
+  const today = new Date();
+  fetch('/api/greetings').then(res => {
+    return res.json();
+  }).then(greetings=>{
+    console.log(greetings);
+    document.querySelector('.greeting').textContent = greetings[today.getDay()];
+  });
+}
+
+// showGreeting();
