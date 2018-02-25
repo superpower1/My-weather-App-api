@@ -17,7 +17,16 @@ const showWeather = (req, res) => {
   });
 }
 
+const showForecast = (req, res) => {
+  const location = req.params.location;
+  console.log(location);
+  request(`http://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${owmAPI}`, function (error, response, body) {
+    res.json(JSON.parse(body));
+  });
+}
+
 module.exports = {
   showGreetings,
-  showWeather
+  showWeather,
+  showForecast
 };

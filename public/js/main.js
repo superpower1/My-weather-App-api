@@ -12,4 +12,12 @@ const showGreeting = () => {
   });
 }
 
-// showGreeting();
+const submitBtn = document.querySelector(".custom-greeting button");
+const formInput = document.querySelector(".custom-greeting input");
+formInput.addEventListener('keyup', e=>{
+  if (!checkUserInput(e.target.value)) {
+    submitBtn.disabled = true;
+  } else {
+    submitBtn.disabled = false;
+  }
+})

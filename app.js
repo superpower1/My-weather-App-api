@@ -25,6 +25,7 @@ app.use(express.urlencoded()); // to support URL-encoded bodies
 app.get('/', homeController);
 app.get('/api/greetings', apiController.showGreetings);
 app.get('/api/weather/:location', apiController.showWeather);
+app.get('/api/forecast/:location', apiController.showForecast);
 
 app.post('/greeting', greetingController.create);
 

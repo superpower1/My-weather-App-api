@@ -9,7 +9,7 @@
 
     </div>
     <button type="button" class="fetch-btn">Greeting</button>
-    <form class="" action="/greeting" method="post">
+    <form class="custom-greeting" action="/greeting" method="post">
       <select class="" name="day">
         <option value="0">Sunday</option>
         <option value="1">Monday</option>
@@ -20,8 +20,11 @@
         <option value="6">Saturday</option>
       </select>
       <input type="text" name="greeting" value="">
-      <button type="submit" name="button">Change</button>
+      <button type="submit" name="button" disabled="true">Change</button>
     </form>
+    <script src="lib/numOnly.js" charset="utf-8"></script>
+    <script src="lib/symbolOnly.js" charset="utf-8"></script>
+    <script src="lib/checkUserInput.js" charset="utf-8"></script>
     <script src="/js/main.js" charset="utf-8"></script>
   </body>
 </html>
