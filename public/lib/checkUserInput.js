@@ -1,3 +1,6 @@
+// const numOnly = require('./numOnly')
+// const symbolOnly = require('./symbolOnly')
+
 function checkUserInput(input) {
   if (!input.trim()) {
     return false;
@@ -10,3 +13,5 @@ function checkUserInput(input) {
   }
   return true;
 }
+
+// module.exports = checkUserInput
