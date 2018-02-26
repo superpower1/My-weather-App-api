@@ -6,7 +6,7 @@ const greetingController = require('./controllers/greetingController');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
