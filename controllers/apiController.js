@@ -1,6 +1,8 @@
 const fs = require('fs');
+const rp = require('request-promise');
 const request = require('request');
 const owmAPI = process.env.OPEN_WEATHER_MAP_KEY;
+const dataProcessor = require('../lib/dataProcessor');
 
 const showGreetings = (req, res) => {
   fs.readFile('database.txt', (err,data) => {
@@ -12,21 +14,27 @@ const showGreetings = (req, res) => {
 const showWeather = (req, res) => {
   const location = req.params.location;
   console.log(location);
-  request(`http://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${owmAPI}`, function (error, response, body) {
-    res.json(JSON.parse(body));
-  });
-}
-
-const showForecast = (req, res) => {
-  const location = req.params.location;
-  console.log(location);
-  request(`http://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=${owmAPI}`, function (error, response, body) {
-    res.json(JSON.parse(body));
-  });
+  // This is the callback way request(`http://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${owmAPI}`, function (error, response, body) {
+  //   const processedData = dataProcessor.processWeatherData(JSON.parse(body));
+  //   request(`http://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=${owmAPI}`, function (error, response, body) {
+  //     processedData.forecast = dataProcessor.processForecastData(JSON.parse(body));
+  //     res.json(processedData);
+  //   });
+  // });
+  rp(`http://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${owmAPI}`)
+  .then(rawWeather=>{
+    return dataProcessor.processWeatherData(JSON.parse(rawWeather));
+  })
+  .then(processedData => {
+    rp(`http://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=${owmAPI}`)
+    .then(rawForcast=>{
+      processedData.forecast = dataProcessor.processForecastData(JSON.parse(rawForcast));
+      res.json(processedData);
+    })
+  })
 }
 
 module.exports = {
   showGreetings,
-  showWeather,
-  showForecast
+  showWeather
 };
