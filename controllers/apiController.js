@@ -18,7 +18,7 @@ const pgp = require('pg-promise')();
 const showGreetings = (req, res) => {
   const cn = {
       url: DBURL,
-      database: 'my_weather_app'
+      database: 'postgresql-cubed-33063'
   };
   const db = pgp(cn);
   const today = new Date();

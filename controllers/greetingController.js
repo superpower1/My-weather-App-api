@@ -28,7 +28,7 @@ const create = (req, res) => {
 
   const cn = {
       url: DBURL,
-      database: 'my_weather_app'
+      database: 'postgresql-cubed-33063'
   };
   const db = pgp(cn);
 
