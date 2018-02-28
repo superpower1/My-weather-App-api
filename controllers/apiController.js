@@ -3,7 +3,6 @@ const rp = require('request-promise');
 const request = require('request');
 const owmAPI = process.env.OPEN_WEATHER_MAP_KEY;
 const dataProcessor = require('../lib/dataProcessor');
-const DBURL = process.env.DATABASE_URL || 'http://localhost:5432';
 
 const pgp = require('pg-promise')();
 
@@ -17,10 +16,10 @@ const pgp = require('pg-promise')();
 
 const showGreetings = (req, res) => {
   const cn = {
-      url: DBURL,
+      url: 'http://localhost:5432',
       database: 'postgresql-cubed-33063'
   };
-  const db = pgp(cn);
+  const db = pgp(process.env.DATABASE_URL || cn);
   const today = new Date();
 
   db.any(`SELECT body FROM greetings WHERE day = ${today.getDay()}`)

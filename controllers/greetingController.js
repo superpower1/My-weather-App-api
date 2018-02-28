@@ -1,6 +1,5 @@
 const fs = require('fs');
 const pgp = require('pg-promise')();
-const DBURL = process.env.DATABASE_URL || 'http://localhost:5432';
 
 // const create = (req, res) => {
 //   const day = req.body.day;
@@ -27,10 +26,10 @@ const create = (req, res) => {
   const greeting = req.body.greeting;
 
   const cn = {
-      url: DBURL,
-      database: 'postgresql-cubed-33063'
+      url: 'http://localhost:5432',
+      database: 'my_weather_app'
   };
-  const db = pgp(cn);
+  const db = pgp(process.env.DATABASE_URL || cn);
 
   db.none(`INSERT INTO greetings(day, body) VALUES(${day}, '${greeting}')`)
     .then(() => {
