@@ -8,7 +8,7 @@ const showGreeting = () => {
     return res.json();
   }).then(greetings=>{
     console.log(greetings);
-    document.querySelector('.greeting').textContent = greetings[today.getDay()];
+    // document.querySelector('.greeting').textContent = greetings[today.getDay()];
   });
 }
 

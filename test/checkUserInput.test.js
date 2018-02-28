@@ -1,5 +1,5 @@
 const expect = require('chai').expect
-const checkUserInput = require('../public/lib/checkUserInput')
+const checkUserInput = require('../public/lib/checkUserInput').checkUserInput
 
 describe('check user input', () => {
   it('should return false if input is empty', () => {

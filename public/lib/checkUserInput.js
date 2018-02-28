@@ -1,5 +1,10 @@
-// const numOnly = require('./numOnly')
-// const symbolOnly = require('./symbolOnly')
+function symbolOnly(input) {
+  return !!input.match(/^[^0-9a-zA-Z]+$/);
+}
+
+function numOnly(input) {
+  return !!input.match(/^[0-9]+$/);
+}
 
 function checkUserInput(input) {
   if (!input.trim()) {
@@ -14,4 +19,8 @@ function checkUserInput(input) {
   return true;
 }
 
-// module.exports = checkUserInput
+module.exports = {
+  symbolOnly,
+  numOnly,
+  checkUserInput
+}
