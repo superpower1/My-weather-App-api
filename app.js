@@ -22,6 +22,7 @@ app.use(express.urlencoded({
 app.get('/', homeController);
 app.get('/api/greetings', apiController.showGreetings);
 app.get('/api/weather/:location', apiController.showWeather);
+app.get('/api/wash/:location', apiController.showWash);
 
 app.post('/greeting', greetingController.create);
 

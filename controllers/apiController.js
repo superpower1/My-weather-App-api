@@ -3,6 +3,7 @@ const rp = require('request-promise');
 const request = require('request');
 const owmAPI = process.env.OPEN_WEATHER_MAP_KEY;
 const dataProcessor = require('../lib/dataProcessor');
+const isWash = require('../lib/isWash');
 
 const pgp = require('pg-promise')();
 
@@ -57,7 +58,34 @@ const showWeather = (req, res) => {
   })
 }
 
+const showWash = (req, res) => {
+  const location = req.params.location;
+  rp(`http://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=${owmAPI}`)
+  .then(rawForcast=>{
+    const forecast = JSON.parse(rawForcast);
+    const list = forecast.list.map(item => {
+      return [item.main.humidity, item.clouds.all, item.wind.speed]
+    })
+    // const getVarification = async ()=>{
+    //   const processedData = await isWash(list.slice(0,8));
+    //   console.log(processedData);
+    //   res.json(processedData);
+    // };
+    isWash(list.slice(0,8), processedData=>{
+      console.log(processedData);
+
+      const reducer = (accumulator, currentValue) => {
+        return (accumulator && currentValue)
+      }
+      const decision = processedData.reduce(reducer);
+      res.json(decision);
+    })
+    // getVarification();
+  })
+}
+
 module.exports = {
   showGreetings,
-  showWeather
+  showWeather,
+  showWash
 };
