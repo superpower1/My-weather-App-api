@@ -3,6 +3,7 @@ const app = express();
 const apiController = require('./controllers/apiController');
 const homeController = require('./controllers/homeController');
 const greetingController = require('./controllers/greetingController');
+const voiceController = require('./controllers/voiceController');
 const cors = require('cors');
 
 const PORT = process.env.PORT || 3001;
@@ -25,6 +26,8 @@ app.get('/api/weather/:location', apiController.showWeather);
 app.get('/api/wash/:location', apiController.showWash);
 
 app.post('/greeting', greetingController.create);
+
+app.post('/voice', voiceController.voiceResponse);
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);

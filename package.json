@@ -18,7 +18,8 @@
     "machine_learning": "^0.1.1",
     "pg-promise": "^8.1.0",
     "request": "^2.83.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "twilio": "^3.13.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
