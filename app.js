@@ -28,6 +28,7 @@ app.get('/api/wash/:location', apiController.showWash);
 app.post('/greeting', greetingController.create);
 
 app.post('/voice', voiceController.voiceResponse);
+app.post('/gather', voiceController.gatherUserInput);
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
